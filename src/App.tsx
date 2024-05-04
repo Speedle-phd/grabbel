@@ -88,7 +88,7 @@ function App() {
          </button>
 
          <dialog ref={ratingRef} className='left-1/2 translate-x-[-50%] w-[min(calc(100%-4rem),70rem)]'>
-            <RatingModal close2={close2} name1={name1} name2={name2} setPoints={setPoints} 
+            <RatingModal close2={close2} name1={name1 || "Romeo"} name2={name2 || "Juliet"} setPoints={setPoints} 
             points1={points1}
             points2={points2}
             
