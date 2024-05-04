@@ -66,7 +66,7 @@ function App() {
       '
       >
          <Header />
-         <Lovers name1={name1 || "Romeo"} name2={name2 || "Juliet"} />
+         <Lovers name1={name1 || 'Romeo'} name2={name2 || 'Juliet'} />
          <button
             onClick={clickHandler}
             className='
@@ -76,9 +76,10 @@ function App() {
             Namen korrigieren
          </button>
 
-         <Chart name1={name1} name2={name2} />
+         <Chart name1={name1 || 'Romeo'} name2={name2 || 'Juliet'} />
 
-         <button onClick={() => ratingRef.current?.showModal()}
+         <button
+            onClick={() => ratingRef.current?.showModal()}
             className='mt-10
             bg-accent text-text rounded-lg px-4 py-2
             hover:bg-primary transition-all
@@ -87,11 +88,17 @@ function App() {
             Bewerte die jüngste Grabbelattacke
          </button>
 
-         <dialog ref={ratingRef} className='left-1/2 translate-x-[-50%] w-[min(calc(100%-4rem),70rem)]'>
-            <RatingModal close2={close2} name1={name1 || "Romeo"} name2={name2 || "Juliet"} setPoints={setPoints} 
-            points1={points1}
-            points2={points2}
-            
+         <dialog
+            ref={ratingRef}
+            className='left-1/2 translate-x-[-50%] w-[min(calc(100%-4rem),70rem)]'
+         >
+            <RatingModal
+               close2={close2}
+               name1={name1 || 'Romeo'}
+               name2={name2 || 'Juliet'}
+               setPoints={setPoints}
+               points1={points1}
+               points2={points2}
             />
          </dialog>
 
