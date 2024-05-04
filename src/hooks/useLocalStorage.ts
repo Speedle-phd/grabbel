@@ -7,7 +7,7 @@ const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T) => voi
       const item = window.localStorage.getItem(key);
       console.log(item)
       // Wenn kein Wert im LocalStorage vorhanden ist, gib das Initialwert zurück
-      return item !== "undefined" ? JSON.parse(item!) : initialValue;
+      return item ? JSON.parse(item!) : initialValue;
    });
 
    // Funktion zum Aktualisieren des Werts im LocalStorage und im Zustand
