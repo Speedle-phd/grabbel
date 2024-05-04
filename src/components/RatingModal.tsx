@@ -13,13 +13,12 @@ const RatingModal = ({ close2, name1, name2, points1, points2, setPoints }: Rati
    function submitHandler(e: React.FormEvent) {
       e.preventDefault()
       const fd = new FormData(e.currentTarget as HTMLFormElement)
-      console.log([...fd.entries()])
       const name = fd.get('rating-name')!
-      const duration = +(fd.get('rating-duration') || 1)
+      const duration = +fd.get('rating-duration')!
       const intensity = +fd.get('rating-intensity')!
       const tenderness = +fd.get('rating-tenderness')!
-      console.log(name, duration, intensity, tenderness)
-      const points = (intensity + tenderness) * duration/60
+      const area  = +fd.get('rating-area')!
+      const points = (area + duration + intensity + tenderness)
       switch(name){
          case name1:
             setPoints({points2, points1: points + points1})
@@ -70,26 +69,47 @@ const RatingModal = ({ close2, name1, name2, points1, points2, setPoints }: Rati
                >
                   Grabbler
                </label>
-               <select name='rating-name' id='rating-name' className='border-2'>
+               <select required name='rating-name' id='rating-name' className='border-2'>
+                  <option value='' selected disabled hidden>
+                     Wähle einen Namen
+                  </option>
                   <option value={name1 || 'Romeo'}>{name1 || 'Romeo'}</option>
                   <option value={name2 || 'Juliet'}>{name2 || 'Juliet'}</option>
                </select>
             </div>
+
             <div className='form-control grid gap-2'>
                <label
                   htmlFor='rating-duration'
                   className='text-emerald-700 font-bold'
                >
-                  Dauer in Minuten
+                  Ausdauernd
                </label>
                <input
-                  type='number'
+                  type='range'
                   name='rating-duration'
                   id='rating-duration'
-                  className="border-2"
+                  min='0'
+                  max={10}
                   step={1}
-                  min={0}
-
+                  defaultValue={0}
+               />
+            </div>
+            <div className='form-control grid gap-2'>
+               <label
+                  htmlFor='rating-area'
+                  className='text-emerald-700 font-bold'
+               >
+                  Größflächigkeit
+               </label>
+               <input
+                  type='range'
+                  name='rating-area'
+                  id='rating-area'
+                  min='0'
+                  max={10}
+                  step={1}
+                  defaultValue={0}
                />
             </div>
             <div className='form-control grid gap-2'>
@@ -106,6 +126,7 @@ const RatingModal = ({ close2, name1, name2, points1, points2, setPoints }: Rati
                   min='0'
                   max={10}
                   step={1}
+                  defaultValue={0}
                />
             </div>
             <div className='form-control grid gap-2'>
@@ -122,6 +143,7 @@ const RatingModal = ({ close2, name1, name2, points1, points2, setPoints }: Rati
                   min='0'
                   max={10}
                   step={1}
+                  defaultValue={0}
                />
             </div>
             <input

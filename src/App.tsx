@@ -103,8 +103,17 @@ function App() {
          </dialog>
 
          <dialog ref={modalRef} className='left-1/2 translate-x-[-50%]'>
-            <LoversModal setValue={setValue} close={close} />
+            <LoversModal
+               setValue={setValue}
+               close={close}
+               setPoints={setPoints}
+            />
          </dialog>
+
+
+         <div className="text-[0.5rem] bottom-0 absolute">
+            Verändert man die Namen wird der Stand zurückgesetzt!
+         </div>
       </div>
    )
 }
