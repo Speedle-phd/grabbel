@@ -66,7 +66,7 @@ function App() {
       '
       >
          <Header />
-         <Lovers name1={name1} name2={name2} />
+         <Lovers name1={name1 || "Romeo"} name2={name2 || "Juliet"} />
          <button
             onClick={clickHandler}
             className='
